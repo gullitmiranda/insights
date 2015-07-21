@@ -39,7 +39,9 @@ defmodule Insights.Mixfile do
   # Type `mix help deps` for more examples and options
   defp deps do
     [
-      {:keenex, "~> 0.2.0", optional: true, github: "gullitmiranda/keenex"},
+      {:keenex , "~> 0.2.0" , optional: true, github: "gullitmiranda/keenex"},
+      {:ex_doc , "~> 0.7.3" , only: :docs},
+      {:earmark, "~> 0.1.17", only: :docs},
     ]
   end
 
@@ -53,7 +55,10 @@ defmodule Insights.Mixfile do
     [ # These are the default files included in the package
       contributors: ["Gullit Miranda"],
       licenses: ["Apache 2.0"],
-      links: %{"GitHub" => @github_repository},
+      links: %{
+        "GitHub" => @github_repository,
+        "Docs"   => "http://hexdocs.pm/insights",
+        },
       files: ~w(mix.exs README* LICENSE* CHANGELOG.md lib test)]
   end
 end

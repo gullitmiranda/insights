@@ -18,6 +18,7 @@ systems({
       '/azk/#{manifest.dir}'        : sync("."),
       '/azk/#{manifest.dir}/deps'   : persistent("#{system.name}/deps"),
       '/azk/#{manifest.dir}/_build' : persistent("#{system.name}/_build"),
+      '/azk/#{manifest.dir}/doc'    : persistent("#{system.name}/doc"),
       '/root/.hex/hex'              : persistent("#{system.name}/.hex"),
       '/root/.hex/hex.config'       : path(env.HOME + '/.hex/hex.config'),
     },
