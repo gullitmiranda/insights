@@ -6,7 +6,7 @@ defmodule Insights do
     `Insights` is a wrapper around the service or database. We can define a
     adapter as follows:
         defmodule Insight do
-          use Insights.Insight, otp_app: :my_app
+          use Insights.Server, otp_app: :my_app
         end
 
     Where the configuration for the Adapter must be in your application

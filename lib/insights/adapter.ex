@@ -9,7 +9,7 @@ defmodule Insights.Adapter do
   @type t :: module
   @type source :: {table :: binary, model :: atom}
 
-  @typep adapter :: Insights.Insight.t
+  @typep adapter :: Insights.Server.t
   @typep query :: String.t
   @typep options :: Keyword.t
 
