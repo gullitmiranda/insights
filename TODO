@@ -1,0 +1,16 @@
+Kernel:
+ ☐ Adding [exvcr](https://hex.pm/packages/exvcr) to recording request/reponse from api
+ ☐ Adding CI (CircleCI, Wercker or Travis)
+ ☐ Adding [excoveralls](https://hex.pm/packages/excoveralls)
+
+Adapters:
+ ☐ Redis
+   ☐ Create base
+ ☐ Keenex
+   ☐ Adding more queries
+     ☐ Insert
+     ☐ Update
+     ☐ Delete
+
+TODO highlight:
+  - Sublime: [PlainTasks](https://packagecontrol.io/packages/PlainTasks)
