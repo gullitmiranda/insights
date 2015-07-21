@@ -1,13 +1,24 @@
 defmodule Insights.Mixfile do
   use Mix.Project
 
+  @version "0.0.1"
+  @github_repository "https://github.com/gullitmiranda/insights"
+  @adapters [:keenex]
+
   def project do
     [app: :insights,
-     version: "0.0.1",
+     version: @version,
      elixir: "~> 1.0",
+     deps: deps,
+
+     # Hex
      description: description,
      package: package,
-     deps: deps]
+
+     # Docs
+     name: "Insights",
+     docs: [source_ref: "v#{@version}",
+            source_url: @github_repository]]
   end
 
   # Configuration for the OTP application
@@ -32,16 +43,15 @@ defmodule Insights.Mixfile do
 
   defp description do
     """
-    Insights is a wrapper for sending and data capture for keen.io or other type of storage
+    Insights is a wrapper for sending and data capture for keen.io or others adapters
     """
   end
 
   defp package do
     [ # These are the default files included in the package
-      files: ["lib", "mix.exs", "README*", "readme*", "LICENSE*", "license*"],
       contributors: ["Gullit Miranda"],
-      licenses: ["MIT"],
-      links: %{ "GitHub" => "https://github.com/gullitmrianda/insights" }
-    ]
+      licenses: ["Apache 2.0"],
+      links: %{"GitHub" => @github_repository},
+      files: ~w(mix.exs README* LICENSE* CHANGELOG.md lib test)]
   end
 end
