@@ -33,7 +33,7 @@ defmodule Insights.Adapters.Base do
 
       @doc false
       def count(server, query, opts) do
-        Insights.Adapters.Base.model(server, @conn.count(query, opts), opts)
+        Insights.Adapters.Base.count(server, @conn.count(query, opts), opts)
       end
 
       @doc false
@@ -84,7 +84,6 @@ defmodule Insights.Adapters.Base do
   def count(_server, data, _opts) do
     data
   end
-
 
   @doc false
   def model(_server, data, _opts) do

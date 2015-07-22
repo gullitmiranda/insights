@@ -157,7 +157,7 @@ defmodule Insights.Server do
   """
   defcallback all(term, Keyword.t) :: [Insights.Model.t] | no_return
 
-  defcallback count(term, Keyword.t, Keyword.t) :: [Insights.Model.t] | no_return
+  defcallback count(term, Keyword.t, Keyword.t) :: term | no_return
 
   @doc """
   Inserts a model or a changeset.

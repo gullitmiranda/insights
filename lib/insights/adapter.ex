@@ -46,7 +46,7 @@ defmodule Insights.Adapter do
   invoked for each selected field in the query result in order
   to convert them to the expected Insights type.
   """
-  defcallback count(adapter, query, options) :: [[term]] | no_return
+  defcallback count(adapter, query, options) :: {:ok, term} | {:error, term} | no_return
 
   @doc """
   Inserts a single new model in the data store.

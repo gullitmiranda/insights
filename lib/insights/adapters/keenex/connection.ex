@@ -15,7 +15,6 @@ if Code.ensure_loaded?(Keenex) do
 
     # Queries
 
-    # def all(collection, opts \\ []) do
     def all(collection, params \\ []) do
       params = Query.params(collection, params)
       Api.get(~s(queries/extraction), params)
