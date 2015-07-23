@@ -16,8 +16,8 @@ if Code.ensure_loaded?(Keenex) do
     # Queries
 
     def all(collection, params \\ []) do
-      params = Query.params(collection, params)
-      Api.get(~s(queries/extraction), params)
+      params = Query.params(params)
+      Api.get([~s(queries/extraction), %{event_collection: collection}], params)
     end
 
     def count(collection, params \\ []) do

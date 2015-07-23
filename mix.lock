@@ -9,7 +9,7 @@
   "ibrowse": {:git, "git://github.com/cmullaparthi/ibrowse.git", "5ee4a806611fcf25cc74155871571e9983a0d0fc", []},
   "idna": {:hex, :idna, "1.0.2"},
   "jsx": {:hex, :jsx, "2.4.0"},
-  "keenex": {:git, "git://github.com/gullitmiranda/keenex.git", "4a2dc842a5df026cb524dd977458f7165ac45eff", []},
+  "keenex": {:git, "git://github.com/gullitmiranda/keenex.git", "646202cd65635c435a7656d409fe657155b40fb8", []},
   "meck": {:hex, :meck, "0.8.3"},
   "poison": {:hex, :poison, "1.3.1"},
   "ssl_verify_hostname": {:hex, :ssl_verify_hostname, "1.0.5"}}
