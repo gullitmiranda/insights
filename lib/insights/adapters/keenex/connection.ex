@@ -30,8 +30,14 @@ if Code.ensure_loaded?(Keenex) do
     end
 
     # TODO
-    def insert(_query, _source, _opts) do
-      {:ok, nil}
+    def insert(collection, params \\ [], _options \\ []) do
+      params = Query.params(params)
+
+      try do
+        Keenex.EventCollections.post(collection, params)
+      rescue
+        err in HTTPotion.HTTPError -> {:error, err}
+      end
     end
 
     # TODO

@@ -13,7 +13,7 @@ defmodule Helpers do
 end
 
 defmodule Insights.Adapters.KeenexTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case, async: false
   # use ExVCR.Mock
 
   # Start Keenex
@@ -73,12 +73,14 @@ defmodule Insights.Adapters.KeenexTest do
   end
 
   test "post new start event" do
-    # {status, response} = Keenex.Events.post(%{start: [%{url: "https://github.com/azukiapp/azk"}]})
-    # {status, response} = Keenex.Events.post(%{start: [%{url: "https://github.com/azukiapp/azk"}]})
-    # {status, response} = Keenex.Events.post(%{start: [%{url: "https://github.com/azukiapp/azk"}]})
-    # {status, response} = Keenex.Events.post(%{start: [%{url: "https://github.com/azukiapp/azk"}]})
+    data = %{
+      url:           "https://github.com/azukiapp/azk",
+      host:          "github.com",
+      repo_user:     "azukiapp",
+      repo_basename: "azk"
+    }
+    {status, _} = Server.insert("start", data)
 
-    # IO.inspect %{status: status, response: response}
-    # assert status == :ok
+    assert status == :ok
   end
 end

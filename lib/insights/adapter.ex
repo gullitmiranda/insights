@@ -51,7 +51,7 @@ defmodule Insights.Adapter do
   @doc """
   Inserts a single new model in the data store.
   """
-  defcallback insert(adapter, source, options) ::
+  defcallback insert(adapter, query, source, options) ::
                     {:ok, Keyword.t} | no_return
 
   @doc """

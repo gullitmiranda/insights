@@ -19,39 +19,39 @@ defmodule Insights.Adapters.Base do
       end
 
       @doc false
-      def start_link(server, opts) do
+      def start_link(server, options) do
         {:ok, _} = Application.ensure_all_started(@conn, @adapter)
-        Insights.Adapters.Base.start_link(@conn, @adapter, server, opts)
+        Insights.Adapters.Base.start_link(@conn, @adapter, server, options)
       end
 
       ## Query
 
       @doc false
-      def all(server, query, opts) do
-        Insights.Adapters.Base.all(server, @conn.all(query, opts), opts)
+      def all(server, query, options) do
+        Insights.Adapters.Base.all(server, @conn.all(query, options), options)
       end
 
       @doc false
-      def count(server, query, opts) do
-        Insights.Adapters.Base.count(server, @conn.count(query, opts), opts)
+      def count(server, query, options) do
+        Insights.Adapters.Base.count(server, @conn.count(query, options), options)
       end
 
       @doc false
-      def insert(server, source, opts) do
-        Insights.Adapters.Base.model(server, @conn.insert(server, source, opts), opts)
+      def insert(server, query, source, options) do
+        Insights.Adapters.Base.model(server, @conn.insert(query, source), options)
       end
 
       @doc false
-      def update(server, query, source, opts) do
-        Insights.Adapters.Base.model(server, @conn.update(server, query, source, opts), opts)
+      def update(server, query, source, options) do
+        Insights.Adapters.Base.model(server, @conn.update(query, source, options), options)
       end
 
       @doc false
-      def delete(server, query, opts) do
-        Insights.Adapters.Base.model(server, @conn.delete(server, query, opts), opts)
+      def delete(server, query, options) do
+        Insights.Adapters.Base.model(server, @conn.delete(query, options), options)
       end
 
-      defoverridable [all: 3, insert: 3, update: 4, delete: 3, start_link: 2]
+      defoverridable [start_link: 2, all: 3, insert: 4, update: 4, delete: 3]
     end
   end
 
@@ -59,7 +59,7 @@ defmodule Insights.Adapters.Base do
   # alias Insights.Adapters.Base.Sandbox
 
   @doc false
-  def start_link(connection, adapter, _server, opts) do
+  def start_link(connection, adapter, _server, options) do
     unless Code.ensure_loaded?(connection) do
       raise """
       could not find #{inspect connection}.
@@ -70,23 +70,23 @@ defmodule Insights.Adapters.Base do
       """
     end
 
-    connection.start_link(connection, opts)
+    connection.start_link(connection, options)
   end
 
   ## Query
 
   @doc false
-  def all(_server, data, _opts) do
+  def all(_server, data, _options) do
     data
   end
 
   @doc false
-  def count(_server, data, _opts) do
+  def count(_server, data, _options) do
     data
   end
 
   @doc false
-  def model(_server, data, _opts) do
+  def model(_server, data, _options) do
     data
   end
 end

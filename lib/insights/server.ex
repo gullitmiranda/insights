@@ -62,8 +62,8 @@ defmodule Insights.Server do
         @adapter.get!(__MODULE__, queryable, id, params)
       end
 
-      def insert(model, params \\ [], options \\ []) do
-        @adapter.insert(__MODULE__, @adapter, model, params)
+      def insert(queryable, params \\ [], options \\ []) do
+        @adapter.insert(__MODULE__, queryable, params, options)
       end
 
       def update(model, params \\ [], options \\ []) do
@@ -175,7 +175,7 @@ defmodule Insights.Server do
   ## Example
       post = MyInsight.insert! %Post{title: "Insights is great"}
   """
-  defcallback insert!(Insights.Model.t, Keyword.t) :: Insights.Model.t | no_return
+  defcallback insert!(Insights.Model.t, Keyword.t, Keyword.t) :: Insights.Model.t | no_return
 
   @doc """
   Updates a model or changeset using its primary key.
