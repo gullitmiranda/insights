@@ -27,6 +27,11 @@ defmodule Insights.Adapters.Base do
       ## Query
 
       @doc false
+      def query(server, collection, query, params, options) do
+        Insights.Adapters.Base.query(server, @conn.query(collection, query, params, options), options)
+      end
+
+      @doc false
       def all(server, query, options) do
         Insights.Adapters.Base.all(server, @conn.all(query, options), options)
       end
@@ -51,7 +56,7 @@ defmodule Insights.Adapters.Base do
         Insights.Adapters.Base.model(server, @conn.delete(query, options), options)
       end
 
-      defoverridable [start_link: 2, all: 3, insert: 4, update: 4, delete: 3]
+      defoverridable [start_link: 2, query: 5, all: 3, insert: 4, update: 4, delete: 3]
     end
   end
 
@@ -74,6 +79,11 @@ defmodule Insights.Adapters.Base do
   end
 
   ## Query
+
+  @doc false
+  def query(_server, data, _options) do
+    data
+  end
 
   @doc false
   def all(_server, data, _options) do

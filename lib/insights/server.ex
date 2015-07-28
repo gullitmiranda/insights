@@ -46,6 +46,10 @@ defmodule Insights.Server do
         @adapter.start_link(__MODULE__, config)
       end
 
+      def query(collection, queryable \\ nil, params \\ [], options \\ []) do
+        @adapter.query(__MODULE__, collection, queryable, params, options)
+      end
+
       def all(queryable \\ nil, params \\ []) do
         @adapter.all(__MODULE__, queryable, params)
       end
@@ -123,6 +127,31 @@ defmodule Insights.Server do
                               {:error, term}
 
   @doc """
+  Fetches all entries using query.
+  """
+  defcallback query(term, Keyword.t) :: [term] | no_return
+
+  @doc """
+  Fetches all entries from the data store matching the given query.
+  May raise `Insights.QueryError` if query validation fails.
+  ## Options
+    * `:timeout` - The time in milliseconds to wait for the call to finish,
+      `:infinity` will wait indefinitely (default: 5000);
+    * `:log` - When false, does not log the query
+  ## Example
+      # Fetch all post titles
+      query = from p in Post,
+           select: p.title
+      MyInsight.all(query)
+  """
+  defcallback all(term, Keyword.t) :: [Insights.Model.t] | no_return
+
+  @doc """
+  Fetches count.
+  """
+  defcallback count(term, Keyword.t, Keyword.t) :: term | no_return
+
+  @doc """
   Fetches a single model from the data store where the primary key matches the
   given id.
   Returns `nil` if no result was found. If the model in the queryable
@@ -141,23 +170,6 @@ defmodule Insights.Server do
     * `:log` - When false, does not log the query
   """
   defcallback get!(term, Keyword.t) :: Insights.Model.t | nil | no_return
-
-  @doc """
-  Fetches all entries from the data store matching the given query.
-  May raise `Insights.QueryError` if query validation fails.
-  ## Options
-    * `:timeout` - The time in milliseconds to wait for the call to finish,
-      `:infinity` will wait indefinitely (default: 5000);
-    * `:log` - When false, does not log the query
-  ## Example
-      # Fetch all post titles
-      query = from p in Post,
-           select: p.title
-      MyInsight.all(query)
-  """
-  defcallback all(term, Keyword.t) :: [Insights.Model.t] | no_return
-
-  defcallback count(term, Keyword.t, Keyword.t) :: term | no_return
 
   @doc """
   Inserts a model or a changeset.

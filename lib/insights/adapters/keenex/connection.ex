@@ -15,6 +15,15 @@ if Code.ensure_loaded?(Keenex) do
 
     # Queries
 
+    def query(collection, query, params \\ [], _options \\ []) do
+      params = Query.params(collection, params)
+
+      case Api.post(query, params, key: :read) do
+        {:ok   , reponse} -> {:ok, reponse["result"]}
+        {:error, reponse} -> {:error, reponse}
+      end
+    end
+
     def all(collection, params \\ []) do
       params = Query.params(params)
       Api.get([~s(queries/extraction), %{event_collection: collection}], params)
@@ -49,5 +58,6 @@ if Code.ensure_loaded?(Keenex) do
     def delete(_query, _source, _opts) do
       {:ok, nil}
     end
+
   end
 end

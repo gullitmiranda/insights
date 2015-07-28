@@ -9,9 +9,11 @@ defmodule Insights.Adapter do
   @type t :: module
   @type source :: {table :: binary, model :: atom}
 
-  @typep adapter :: Insights.Server.t
-  @typep query :: String.t
-  @typep options :: Keyword.t
+  @typep adapter    :: Insights.Server.t
+  @typep collection :: String.t
+  @typep query      :: String.t
+  @typep params     :: Keyword.t
+  @typep options    :: Keyword.t
 
   @doc """
   The callback invoked in case the adapter needs to inject code.
@@ -33,6 +35,11 @@ defmodule Insights.Adapter do
               {:ok, pid} | :ok | {:error, {:already_started, pid}} | {:error, term}
 
   @doc """
+  Fetches all result from the data store based in the given query
+  """
+  defcallback query(adapter, collection, query, params, options) :: [[term]] | no_return
+
+  @doc """
   Fetches all results from the data store based on the given query.
   It receives a preprocess function responsible that should be
   invoked for each selected field in the query result in order
@@ -46,7 +53,7 @@ defmodule Insights.Adapter do
   invoked for each selected field in the query result in order
   to convert them to the expected Insights type.
   """
-  defcallback count(adapter, query, options) :: {:ok, term} | {:error, term} | no_return
+  defcallback count(adapter, query, options) :: {:ok, Keyword.t} | {:error, Keyword.t} | no_return
 
   @doc """
   Inserts a single new model in the data store.
@@ -75,5 +82,4 @@ defmodule Insights.Adapter do
   """
   defcallback delete(adapter, query, options) ::
                      {:ok, Keyword.t} | {:error, :stale} | no_return
-
 end

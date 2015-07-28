@@ -83,4 +83,19 @@ defmodule Insights.Adapters.KeenexTest do
 
     assert status == :ok
   end
+
+  test "get last_run using query" do
+    params = [
+      target_property: "keen.timestamp",
+      filters: [
+        "host=github.com",
+        "repo_user=azukiapp",
+        "repo_basename=azk",
+      ]
+    ]
+
+    {status, _} = Server.query("start", "queries/select_unique", params)
+
+    assert status == :ok
+  end
 end
