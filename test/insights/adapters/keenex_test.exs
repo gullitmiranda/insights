@@ -37,10 +37,6 @@ defmodule Insights.Adapters.KeenexTest do
   end
 
   test "server start and credentials" do
-    # {status, keen} = Server.start_link
-    # IO.inspect {status, keen}
-
-    # assert status == :ok
     assert Server.__adapter__ == Insights.Adapters.Keenex
     assert Keenex.project_id == Helpers.project_id
     assert Keenex.write_key == Helpers.write_key
@@ -67,7 +63,6 @@ defmodule Insights.Adapters.KeenexTest do
     # ]})
 
     {status, _} = Server.count("start", filters: ["url=https://github.com/azukiapp/feedbin"])
-    |> IO.inspect
 
     assert status == :ok
   end
