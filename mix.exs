@@ -1,7 +1,7 @@
 defmodule Insights.Mixfile do
   use Mix.Project
 
-  @version "0.0.1"
+  @version "0.0.2"
   @github_repository "https://github.com/gullitmiranda/insights"
   @adapters [:keenex]
 
