@@ -1,3 +1,9 @@
+Docs:
+ ☐ Adding usage to `README.md`
+ ☐ Review usage in `lib/insights.ex`
+ ☐ Adding docs to queries
+ ☐ Adding docs to connection
+
 Kernel:
  ☐ Adding [exvcr](https://hex.pm/packages/exvcr) to recording request/reponse from api
  ☐ Adding CI (CircleCI, Wercker or Travis)
@@ -8,7 +14,6 @@ Adapters:
    ☐ Create base
  ☐ Keenex
    ☐ Adding more queries
-     ☐ Insert
      ☐ Update
      ☐ Delete
 
