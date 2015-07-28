@@ -50,12 +50,12 @@ defmodule Insights.Server do
         @adapter.query(__MODULE__, collection, queryable, params, options)
       end
 
-      def all(queryable \\ nil, params \\ []) do
-        @adapter.all(__MODULE__, queryable, params)
+      def all(collection \\ nil, params \\ []) do
+        @adapter.all(__MODULE__, collection, params)
       end
 
-      def count(queryable \\ nil, params \\ [], options \\ []) do
-        @adapter.count(__MODULE__, queryable, params)
+      def count(collection \\ nil, params \\ [], options \\ []) do
+        @adapter.count(__MODULE__, collection, params)
       end
 
       def get(queryable, id, params \\ [], options \\ []) do
@@ -66,8 +66,8 @@ defmodule Insights.Server do
         @adapter.get!(__MODULE__, queryable, id, params)
       end
 
-      def insert(queryable, params \\ [], options \\ []) do
-        @adapter.insert(__MODULE__, queryable, params, options)
+      def insert(collection, params \\ [], options \\ []) do
+        @adapter.insert(__MODULE__, collection, params, options)
       end
 
       def update(model, params \\ [], options \\ []) do
