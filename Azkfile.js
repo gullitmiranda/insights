@@ -13,7 +13,7 @@ systems({
       "mix do deps.get, compile",
     ],
     workdir: "/azk/#{manifest.dir}",
-    // command: "mix app.start",
+    command: "exit 0",
     mounts: {
       '/azk/#{manifest.dir}'        : sync("."),
       '/azk/#{manifest.dir}/deps'   : persistent("#{system.name}/deps"),
